@@ -12,4 +12,5 @@ for å kjøre produceren:
 ```
 cd producer
 dotnet run C:\repos\kafka-dotnet-getting-started\getting-started.properties
+dotnet run /home/jorn/repos/personligejorn/kafka-dotnet-getting-started/getting-started.properties
 ```
