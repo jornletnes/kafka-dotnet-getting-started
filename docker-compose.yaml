@@ -1,0 +1,51 @@
+version: '3'
+services:
+    postgres:
+        image: postgres:16
+        container_name: postgresdb
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: pass
+            POSTGRES_DB: postgres
+        ports:
+            - "5432:5432"
+        volumes:
+            # Mount the custom PostgreSQL configuration file
+            - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
+            # Persist the database data
+            - postgres_data:/var/lib/postgresql/data
+        command: postgres -c config_file=/etc/postgresql/postgresql.conf
+        networks:
+            - pgnetwork
+
+    pgadmin:
+        image: dpage/pgadmin4
+        container_name: pgadmin
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@admin.com
+            PGADMIN_DEFAULT_PASSWORD: admin
+        ports:
+            - "8080:80"
+        depends_on:
+            - postgres
+        networks:
+            - pgnetwork
+
+    lenses:
+        image: lensesio/box
+        container_name: lenses
+        environment:
+            ADV_HOST: 127.0.0.1
+            EULA: "https://licenses.lenses.io/download/lensesdl?id=<din-link-se-på-epost>"
+        ports:
+            - "3030:3030"
+            - "9092:9092"
+        networks:
+            - pgnetwork
+
+networks:
+    pgnetwork:
+        driver: bridge
+
+volumes:
+    postgres_data:
