@@ -30,7 +30,7 @@ services:
     container_name: lenses
     environment:
       ADV_HOST: 127.0.0.1
-      EULA: "https://licenses.lenses.io/download/lensesdl?id=<id>"
+      EULA: "https://licenses.lenses.io/download/lensesdl?id=933e42bc-9f60-11ef-9df4-42010af01003"
     ports:
       - "3030:3030"
       - "9092:9092"
