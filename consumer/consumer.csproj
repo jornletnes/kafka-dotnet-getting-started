@@ -13,4 +13,10 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Ini" Version="8.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="getting-started.properties">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
