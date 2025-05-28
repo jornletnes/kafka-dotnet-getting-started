@@ -2,10 +2,12 @@ using Confluent.Kafka;
 using System;
 using Microsoft.Extensions.Configuration;
 
-class Producer {
+class Producer
+{
     static void Main(string[] args)
     {
-        if (args.Length != 1) {
+        if (args.Length != 1)
+        {
             Console.WriteLine("Please provide the configuration file path as a command line argument");
         }
 
@@ -15,6 +17,30 @@ class Producer {
             .AddIniFile(file)
             .Build();
 
+        bool continueProducing = true;
+        do
+        {
+
+            if(DateTime.Now.Second % 2 == 1)
+            {
+                ProductEvents(configuration);
+            }
+
+            if (Console.KeyAvailable)
+            {
+                var keypress = Console.ReadKey().KeyChar;
+                if(keypress == 'x')
+                {
+                    continueProducing = false;
+                }
+            }
+
+            System.Threading.Thread.Sleep(100);
+        } while (continueProducing);
+    }
+
+    private static void ProductEvents(IConfiguration configuration)
+    {
         const string topic = "purchases";
 
         string[] users = { "eabara", "jsmith", "sgarcia", "jbernard", "htanaka", "awalther" };
@@ -34,10 +60,12 @@ class Producer {
                 producer.Produce(topic, new Message<string, string> { Key = user, Value = item },
                     (deliveryReport) =>
                     {
-                        if (deliveryReport.Error.Code != ErrorCode.NoError) {
+                        if (deliveryReport.Error.Code != ErrorCode.NoError)
+                        {
                             Console.WriteLine($"Failed to deliver message: {deliveryReport.Error.Reason}");
                         }
-                        else {
+                        else
+                        {
                             Console.WriteLine($"Produced event to topic {topic}: key = {user,-10} value = {item}");
                             numProduced += 1;
                         }

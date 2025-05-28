@@ -9,13 +9,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "producer", "producer\produc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "streaming", "streaming\streaming.csproj", "{7B741DFE-D56D-45C1-AA5C-149EBB0B135B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		getting-started.properties = getting-started.properties
+		readme.md = readme.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A4F5D937-F5BF-4329-8858-2566AD6D2736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,5 +33,8 @@ Global
 		{7B741DFE-D56D-45C1-AA5C-149EBB0B135B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B741DFE-D56D-45C1-AA5C-149EBB0B135B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B741DFE-D56D-45C1-AA5C-149EBB0B135B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

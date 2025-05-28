@@ -7,7 +7,8 @@ class Consumer {
 
     static void Main(string[] args)
     {
-        if (args.Length != 1) {
+        if (args.Length != 1) 
+        {
             Console.WriteLine("Please provide the configuration file path as a command line argument");
         }
 
@@ -26,20 +27,27 @@ class Consumer {
             cts.Cancel();
         };
 
+        Console.WriteLine("Init finished...starting consumption");
+
         using (var consumer = new ConsumerBuilder<string, string>(
             configuration.AsEnumerable()).Build())
         {
             consumer.Subscribe(topic);
-            try {
-                while (true) {
+            try 
+            {
+                while (true) 
+                {
                     var cr = consumer.Consume(cts.Token);
                     Console.WriteLine($"Consumed event from topic {topic} with key {cr.Message.Key,-10} and value {cr.Message.Value}");
                 }
             }
-            catch (OperationCanceledException) {
+            catch (OperationCanceledException) 
+            {
                 // Ctrl-C was pressed.
             }
-            finally{
+            finally
+            {
+                Console.WriteLine("Closing...");
                 consumer.Close();
             }
         }

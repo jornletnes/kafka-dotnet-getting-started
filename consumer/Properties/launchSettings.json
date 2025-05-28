@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "consumer": {
+      "commandName": "Project",
+      "commandLineArgs": "getting-started.properties"
+    }
+  }
+}
