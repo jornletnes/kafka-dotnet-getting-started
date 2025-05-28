@@ -73,7 +73,7 @@ class Producer
             }
 
             producer.Flush(TimeSpan.FromSeconds(10));
-            Console.WriteLine($"{numProduced} messages were produced to topic {topic}");
+            Console.WriteLine($"{numProduced} messages were produced to topic {topic}. Press 'x' to exit!");
         }
     }
 }
