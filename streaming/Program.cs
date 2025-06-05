@@ -21,10 +21,11 @@ class Streams
         {
             Console.WriteLine($"Payload: {key} - {value}");
         };
+        
         string ToAction(string key, string value, IRecordContext recordContext)
         {
             Console.WriteLine($"Payload: {value} - {recordContext}");
-            return value + "-" + recordContext;
+            return NormalizeTopicName(value + "-" + recordContext);
         }
 
         kstream.Peek(PeekAction);
@@ -36,5 +37,10 @@ class Streams
         Console.CancelKeyPress += (o, e) => { stream.Dispose(); };
 
         await stream.StartAsync();
+    }
+
+    private static string NormalizeTopicName(string topicName)
+    {
+        return topicName.Replace(" ", ""); //Remove spaces from topicname
     }
 }
